@@ -246,7 +246,7 @@ def _needs_recursive_processing(
             if field_type is dict and isinstance(schema[field_name], dict):
                 if field_name in ("properties", "$defs", "$definitions"):
                     # Check if any schema in the map needs conversion
-                    for name, sub_schema in schema[field_name].items():
+                    for _name, sub_schema in schema[field_name].items():
                         if isinstance(sub_schema, dict):
                             nested_needs_conversion = (
                                 any(
