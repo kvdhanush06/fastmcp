@@ -60,7 +60,6 @@ def convert_openapi_schema_to_json_schema(
         remove_read_only: Whether to remove readOnly properties
         remove_write_only: Whether to remove writeOnly properties
         convert_one_of_to_any_of: Whether to convert oneOf to anyOf
-        convert_one_of_to_any_of: Whether to convert oneOf to anyOf
 
     Returns:
         JSON Schema-compatible dictionary
@@ -219,7 +218,7 @@ def _needs_recursive_processing(
             if field_type is dict and isinstance(schema[field_name], dict):
                 if field_name in ("properties", "$defs", "$definitions"):
                     # Check if any schema in the map needs conversion
-                    for _name, sub_schema in schema[field_name].items():
+                    for sub_schema in schema[field_name].values():
                         if isinstance(sub_schema, dict):
                             nested_needs_conversion = (
                                 any(
